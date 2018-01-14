@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Effective JavaScript: Frogger</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!--引入fonts awsome框架，引用其图标-->
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <!--引入google fonts网络字体库-->
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
+</head>
+<body>
+    <div class="start-interface">
+
+        <div class="start-content">
+
+          <!--开始界面控制内容-->
+          <div class="start-interface-frame">
+            <header>Doll Adventure</header>
+            <div class="choose-role">
+              <a href="#" id="last-role"></a>
+              <div class="role">
+                <img src="images/char-boy.png" class="role-img" alt="" />
+                <span id="role-name"></span>
+              </div>
+              <a href="#" id="next-role"></a>
+            </div>
+            <a href="#" id="start" class="btn">Begin to travel</a>
+            <a href="#" id="introduction" class="btn">Introduction</a>
+          </div>
+
+          <!--排名模块-->
+          <div class="rank-board">
+            <a href="#" id="rank-list-control">Rank List <i class="fa fa-chevron-down"></i> </a>
+            <ul class="rank-list">
+              <!--rank content-->
+              <!--<li> <span class="rank-num"></span> <span class="rank-score"></span> <span class="rank-time"></span> </li>-->
+            </ul>
+          </div>
+
+        </div>
+
+        <!--游戏介绍-->
+        <div class="start-introduction">
+          <div class="description">
+            <header>The Doll-Adventure Instruction</header>
+            <div class="synopsis"></div>
+            <div class="page-control">
+              <a href="#" id="last-page"></a>
+              <a href="#" id="next-page"></a>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+
+    <!--pup-up about win & lost information-->
+    <div class="modal-mask">
+      <div class="modal-frame">
+        <div class="modal-title">
+          <header id="title"></header>
+        </div>
+        <div class="modal-content">
+            <p id="content"></p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" id="backto" class="btn">Back to Home</a>
+          <a href="#" class="btn" id="undetermined">Play again</a>
+        </div>
+      </div>
+    </div>
+
+
+    <!--game interface-->
+    <div class="container">
+  <!--    <div class="role-life"></div>-->
+      <div class="stuff board">
+        <div class="content">
+          <header>My Bag</header>
+          <!--展示获得的物品，level<3物品时不会出现-->
+          <div class="stuff-show flex-column">
+            <!--由不同物品的条目构成-->
+              <div class="stuff-item green-gem">
+                <img src="images/Gem Green show.png" alt="">
+                x
+                <span class="stuff-number green-gem-num">0</span>
+              </div>
+
+              <div class="stuff-item blue-gem">
+                <img src="images/Gem Blue show.png" alt="">
+                x
+                <span class="stuff-number blue-gem-num">0</span>
+              </div>
+
+              <div class="stuff-item yellow-gem">
+                <img src="images/Gem Orange show.png" alt="">
+                x
+                <span class="stuff-number yellow-gem-num">0</span>
+              </div>
+
+              <div class="stuff-item key">
+                <img src="images/Key show.png" alt="">
+                x
+                <span class="stuff-number key-num">0</span>
+              </div>
+
+              <div class="stuff-item treasure">
+                <img src="images/Star show.png" alt="">
+                x
+                <span class="stuff-number treasure-num">0</span>
+              </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="drawing"></div>
+
+      <div class="doll board">
+        <div class="content">
+          <div class="role-information flex-column">
+            <div class="level">
+              <span>Level:</span>
+              <div class="current-level">
+                0
+              </div>
+            </div>
+            <div class="score">
+              <span>Score:</span>
+              <div class="get-score">
+                0
+              </div>
+            </div>
+            <div class="time">
+              <span>Time:</span>
+              <div class="spend-time">
+                <span id="min-in-board"></span>'
+                <span id="sec-in-board"></span>"
+              </div>
+            </div>
+            <div class="life">
+              <span>Life:</span>
+              <div class="role-life">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="control-btn">
+            <a href="#" id="replay"><span id="replay-num-show"></span></a>
+            <a href="#" id="pause"></a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="js/resources.js"></script>
+    <script src="js/synopsis.js"></script>
+    <script src="js/game_experience.js"></script>
+    <script src="js/constructor.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

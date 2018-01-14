@@ -1,0 +1,679 @@
+
+
+body {
+    margin: 0;
+    padding: 0;
+    /*text-align: center;*/
+    font-family: 'Cabin Sketch', 'Comic Sans MS', cursive;
+    overflow: hidden;
+}
+
+.btn {
+    display: block;
+    text-decoration: none;
+    line-height: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #0d79d1;
+    padding: 12px 15px;
+    color: #0d79d1;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+.btn:hover {
+    background-color: #0d79d1;
+    color: white;
+}
+/*start interface styles*/
+.start-interface {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    perspective: 1500px;
+    background: url(../images/geometry2.png);
+    overflow: hidden;
+}
+
+.start-interface .start-content {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f1f1f1;
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: 50% 50%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+/*修复出现‘故事介绍’后，开始界面按键依旧可以单击的情况*/
+.animation-in .start-content::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.animation-in .start-content {
+    animation: rotateLeft 0.4s forwards;
+}
+
+.animation-out .start-content {
+    animation: restoreMain 0.4s forwards;
+}
+
+@keyframes rotateLeft {
+   from {
+     transform: translateX(0) rotateY(0) translateZ(0);
+     opacity: 1;
+   }
+   to {
+     transform: translateX(-30%) rotateY(45deg) translateZ(-50px);
+     opacity: 0.5;
+   }
+}
+
+@keyframes restoreMain {
+   from {
+     transform: translateX(-30%) rotateY(45deg) translateZ(-50px);
+     opacity: 0.5;
+   }
+   to {
+     transform: translateX(0) rotateY(0) translateZ(0);
+     opacity: 1;
+   }
+}
+
+/*开始界面主控制区样式设计*/
+.start-interface .start-interface-frame {
+    width: 60%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-interface .start-interface-frame header {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.start-interface .start-interface-frame .choose-role {
+    width: 20rem;
+    height: 10rem;
+    margin: 15px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.start-interface .start-interface-frame .choose-role a {
+  display: block;
+  opacity: 0;
+  width: 1rem;
+  height: 1rem;
+  border-left: 4px solid #0d79d1;
+  border-bottom: 4px solid #0d79d1;
+  border-radius: 0 0 0 0.5rem;
+  margin: auto;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.start-interface .start-interface-frame .choose-role:hover a {
+  opacity: 1;
+}
+
+#last-role {
+  transform: rotate(45deg);
+}
+
+#next-role {
+  transform: rotate(-135deg);
+}
+
+.start-interface .start-interface-frame .btn {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 15px 20px;
+}
+
+.start-interface .start-interface-frame #introduction {
+    line-height: 25px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    margin-top: 10px;
+    padding: 0;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.start-interface .start-interface-frame #introduction:hover {
+    background-color: transparent;
+    color: #0d79d1;
+    border-bottom: 2px solid #0d79d1;
+}
+
+.start-interface .rank-board {
+    position: absolute;
+    top: 5rem; right: 8rem;
+    width: 12rem;
+    border-radius: 0.5rem;
+    padding: 5px 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    height: 24px;
+    overflow: hidden;
+    transition: height 0.5s;
+}
+
+.start-interface .rank-board.open {
+    height: 200px;
+    transition: height 0.8s;
+}
+
+.start-interface .rank-board ul {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
+
+.start-interface .rank-board ul li {
+    width: 100%;
+/*    height: 25px;*/
+    padding: 4px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #aaa;
+}
+/*设置显示比较栏中的样式*/
+.start-interface .rank-board ul li:nth-child(1) {
+    color: #f00;
+}
+
+.start-interface .rank-board ul li:nth-child(2) {
+    color: #0d79d1;
+}
+
+.start-interface .rank-board ul li:nth-child(3) {
+    color: yellow;
+}
+
+.start-interface .rank-board ul li:first-child {
+    margin-top: 5px;
+}
+
+.start-interface .rank-board ul li span {
+    display: inline-block;
+}
+
+.start-interface .rank-board ul li .rank-num {
+    width: 2rem;
+}
+
+.start-interface .rank-board ul li .rank-score {
+    width: 4rem;
+}
+
+.start-interface .rank-board ul li .rank-time {
+    width: 8rem;
+}
+
+.start-interface .rank-board a {
+    display: inline-block;
+    text-decoration: none;
+    color: #aaa;
+    line-height: 25px;
+}
+
+/*开始界面剧情介绍区样式设计*/
+.start-interface .start-introduction {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30rem;
+    height: 100%;
+    position: absolute;
+    top: 0; right: -20rem;
+    z-index: 2;
+
+}
+
+.start-interface .start-introduction .description {
+    width: 100%;
+    height: 35rem;
+    font-size: 19px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.start-interface .start-introduction .description header {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.start-interface .start-introduction .description .synopsis {
+    height: 29rem;
+    width: 100%;
+}
+
+/*介绍文章中的具体样式*/
+
+.start-interface .start-introduction .description .synopsis img {
+    width: 30px;
+    vertical-align: -7px;
+    display: inline-block;
+}
+
+.start-interface .start-introduction .description .synopsis .empersized {
+    font-weight: bold;
+}
+
+.start-interface .start-introduction .description .page-control {
+    height: 2rem;
+    width: 100%;
+}
+
+.start-interface .start-introduction .description .page-control a {
+    height: 32px;
+    width: 32px;
+    display: block;
+}
+
+#last-page {
+    float: left;
+    margin-left: 1rem;
+    background: url(../images/last-page.png) no-repeat 0/ 32px 32px;
+}
+
+#next-page {
+    float: right;
+    margin-right: 1rem;
+    background: url(../images/next-page.png) no-repeat 0/ 32px 32px;
+}
+
+.animation-in .start-introduction {
+    transition: right 0.4s 0.15s;
+    right: 4rem;
+}
+.animation-out .start-introduction {
+    transition: right 1s;
+    right: -20rem;
+}
+
+
+/*modal dialog styles*/
+.modal-mask {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.fadeInDown {
+    animation: fadeInDown 0.5s forwards;
+}
+.fadeOutUp {
+    animation: fadeOutUp 0.5s forwards;
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-25%);
+  }
+}
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(-25%);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+
+.modal-frame {
+    width: 25rem;
+    height: 16rem;
+    border-radius: 0.8rem;
+    background-color: white;
+    font-size: 20px;
+}
+
+.modal-mask .empersized {
+    font-weight: bold;
+}
+
+.modal-mask .modal-frame .modal-title {
+    width: 100%;
+    height: 28%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-mask .modal-frame .modal-title header {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.modal-mask .modal-frame .modal-title header.win-game {
+    animation: tada 1.2s forwards;
+}
+
+.modal-mask .modal-frame .modal-title header.lost-game {
+    animation: hinge 1.5s;
+}
+
+.modal-mask .modal-frame .modal-title header.pause-game {
+    animation: rubberBand 1.5s;
+}
+
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%, 20% {
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%, 50%, 70%, 90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%, 60%, 80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes hinge {
+  0% {
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+  }
+
+  20%, 60% {
+    transform: rotate3d(0, 0, 1, 80deg);
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+  }
+
+  40%, 80% {
+    transform: rotate3d(0, 0, 1, 60deg);
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+    opacity: 1;
+  }
+
+  to {
+    transform: translate3d(0, 700px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, .95, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.modal-mask .modal-frame .modal-content {
+    width: 100%;
+    height: 42%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-mask .modal-frame .modal-content p {
+    margin: auto 30px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.modal-mask .modal-frame .modal-footer {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-mask .modal-frame .modal-footer .btn {
+    line-height: 1rem;
+    border-radius: 0.5rem;
+    margin: auto 12px;
+    transition: all 0.2s;
+}
+
+/*动画切换样式，在单击开始游戏后，由开始界面切换到游戏界面的动画*/
+.start-interface.zoomOutDown {
+  animation: zoomOutDown 0.8s;
+}
+
+@keyframes zoomOutDown {
+  40% {
+    opacity: 1;
+    transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
+    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(.1, .1, .1) translate3d(0, 2000px, 0);
+    transform-origin: center bottom;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  }
+}
+
+/*game interface styles*/
+.container {
+    position: relative;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+}
+.container.empersized {
+    filter: blur(8px) contrast(0.8) brightness(0.8);
+}
+
+.container .flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .board {
+    width: 30%;
+    height: 100%;
+    /*border: 1px solid black;*/
+
+}
+
+.container .board .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .stuff .content header {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.container .stuff .content .stuff-show {
+    width: 80%;
+    height: 55%;
+    margin: 5px auto;
+}
+
+.container .stuff .content .stuff-show div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container .stuff .content .stuff-show img {
+    display: inline-block;
+    width: 60px;
+    margin-right: 10px;
+}
+
+.container .stuff .content .stuff-show span {
+    display: inline-block;
+    width: 30px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.container .doll .content .role-information {
+    width: 80%;
+    height: 20%;
+    margin: 5px auto;
+}
+
+.container .doll .content .role-information > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.container .doll .content .role-information > div > span:nth-child(1) {
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    width: 60px;
+    text-align: right;
+}
+
+.container .doll .content .role-information > div div {
+    width: 100px;
+    line-height: 35px;
+    margin-left: 10px;
+    font-size: 35px;
+    font-weight:bold;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.container .role-life {
+    width: 5rem;
+    height: 1.5rem;
+
+}
+
+.container .role-life .role-heart {
+    display: inline-block;
+    width: 1.4rem;
+    height: 1.4rem;
+    background: url(../images/Heart_show.png) no-repeat 0 0/1.2rem;
+    vertical-align: center;
+}
+
+.container .doll .content .control-btn {
+    margin-top: 10px;
+    width: 80%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .doll .content .control-btn a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    text-decoration: none;
+    transform: scale(1);
+    transition: transform 0.3s;
+}
+
+#replay {
+    margin-right: 30px;
+    background: url(../images/replay.png) no-repeat 0 0 / 32px 32px;
+}
+
+#replay span {
+    display: inline-block;
+    line-height: 34px;
+    width: 35px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0d79d1;
+}
+
+#pause {
+    background: url(../images/pause.png) no-repeat 0 0 / 32px 32px;
+}
+
+#replay:hover,
+#pause:hover {
+    transform: scale(1.5);
+}
